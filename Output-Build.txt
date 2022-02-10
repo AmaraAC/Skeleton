@@ -1,0 +1,13 @@
+﻿Build started...
+1>------ Build started: Project: ClassLibrary, Configuration: Debug Any CPU ------
+2>------ Build started: Project: AdminSystem, Configuration: Debug Any CPU ------
+2>Validating Web Site
+2>Building directory '/'.
+2>
+2>Validation Complete
+1>  ClassLibrary -> H:\Desktop\AgileTeamWork\Skeleton\ClassLibrary\bin\Debug\ClassLibrary.dll
+3>------ Build started: Project: Testing6, Configuration: Debug Any CPU ------
+4>------ Build started: Project: OrderTest, Configuration: Debug Any CPU ------
+3>  Testing6 -> H:\Desktop\AgileTeamWork\Skeleton\Testing6\bin\Debug\Testing6.dll
+4>  OrderTest -> H:\Desktop\AgileTeamWork\Skeleton\Testing4\bin\Debug\Testing4.dll
+========== Build: 4 succeeded, 0 failed, 4 up-to-date, 0 skipped ==========
