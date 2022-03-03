@@ -81,5 +81,139 @@ namespace Testing2
 
             Assert.AreEqual(acustomer.MemberSubscription, gt);
         }
+
+        [TestMethod]
+        public void FindMethodOK()
+        {
+            clsCustomer acustomer = new clsCustomer();
+
+            Boolean Found = false;
+
+            Int32 CustomerID = 14;
+
+            Found = acustomer.Find(CustomerID);
+
+            Assert.IsTrue(Found);
+        }
+        [TestMethod]
+        public void TestCustomerIDFound()
+        {
+            clsCustomer gg = new clsCustomer();
+
+            Boolean Found = false;
+
+            Boolean OK = true;
+
+            Int32 CustomerID = 14;
+
+            Found = gg.Find(CustomerID);
+
+            if (gg.CustomerID != 14)
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestCustomerNameFound()
+        {
+            clsCustomer gg = new clsCustomer();
+
+            Boolean Found = false;
+
+            Boolean OK = true;
+
+            Int32 CustomerID = 14;
+
+            Found = gg.Find(CustomerID);
+
+            if (gg.CustomerName != "Jack")
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestDateJoinedFound()
+        {
+            clsCustomer gg = new clsCustomer();
+
+            Boolean Found = false;
+
+            Boolean OK = true;
+
+            Int32 CustomerID = 21;
+
+            Found = gg.Find(CustomerID);
+
+            if (gg.DateJoined != Convert.ToDateTime("4/2/2022"))
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestOver18Found()
+        {
+            clsCustomer gg = new clsCustomer();
+
+            Boolean Found = false;
+
+            Boolean OK = true;
+
+            Int32 CustomerID = 21;
+
+            Found = gg.Find(CustomerID);
+
+            if (gg.Over18 != true)
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestGenderFound()
+        {
+            clsCustomer gg = new clsCustomer();
+
+            Boolean Found = false;
+
+            Boolean OK = true;
+
+            Int32 CustomerID = 21;
+
+            Found = gg.Find(CustomerID);
+
+            if (gg.Gender != "Female")
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestMemberSubscriptionFound()
+        {
+            clsCustomer gg = new clsCustomer();
+
+            Boolean Found = false;
+
+            Boolean OK = true;
+
+            Int32 CustomerID = 21;
+
+            Found = gg.Find(CustomerID);
+
+            if (gg.MemberSubscription != true )
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(OK);
+        }
     }
 }
