@@ -26,9 +26,9 @@ namespace Testing1
             //create some test data to assign to the property
             int TestData = 3;
             //assign the data to the property
-            AnStaff.StaffId = TestData;
+            AnStaff.StaffID = TestData;
             //test to see the twp values are the same
-            Assert.AreEqual(AnStaff.StaffId, TestData);
+            Assert.AreEqual(AnStaff.StaffID, TestData);
         }
         [TestMethod]
         public void JoinDatePropertyOK()
@@ -68,7 +68,7 @@ namespace Testing1
             //create an instance of the class we want to create
             clsStaff AnStaff = new clsStaff();
             //create some test data to assign to the property
-            string TestData = "Male";
+            string TestData = "MALE";
             //assign the data to the property
             AnStaff.Gender = TestData;
             //test to see that the two values are the same
@@ -85,6 +85,102 @@ namespace Testing1
             AnStaff.EighteenPlus = TestData;
             //test to see that the two values are the same
             Assert.AreEqual(AnStaff.EighteenPlus, TestData);
+        }
+
+        [TestMethod]
+        public void TestStaffIdFound()
+        {
+            clsStaff AnStaff = new clsStaff();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 StaffID = 3;
+            Found = AnStaff.Find(StaffID);
+            if (AnStaff.StaffID != 3)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestJoinDateFound()
+        {
+            clsStaff AnStaff = new clsStaff();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 StaffID = 3;
+            Found = AnStaff.Find(StaffID);
+            if (AnStaff.JoinDate != Convert.ToDateTime("03/02/2020"))
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestStaffNameFound()
+        {
+            clsStaff AnStaff = new clsStaff();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 StaffID = 3;
+            Found = AnStaff.Find(StaffID);
+            if (AnStaff.StaffName != "Robert Smith")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+
+        public void TestRoleFound()
+        {
+            clsStaff AnStaff = new clsStaff();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 StaffID = 3;
+            Found = AnStaff.Find(StaffID);
+            if (AnStaff.Role != "Administrator")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestGenderFound()
+        {
+            clsStaff AnStaff = new clsStaff();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 StaffID = 3;
+            Found = AnStaff.Find(StaffID);
+            if (AnStaff.Gender != "FEMALE")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestEighteenPlusFound()
+        {
+            clsStaff AnStaff = new clsStaff();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 StaffID = 3;
+            Found = AnStaff.Find(StaffID);
+            if (AnStaff.EighteenPlus != true)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void FindMethodOK()
+        {
+            clsStaff AnStaff = new clsStaff();
+            Boolean Found = false;
+            Int32 StaffID = 3;
+            Found = AnStaff.Find(StaffID);
+            Assert.IsTrue(Found);
         }
 
 
