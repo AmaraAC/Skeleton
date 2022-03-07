@@ -18,7 +18,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         clsStaff AStaff = new clsStaff();
         AStaff.StaffName = txtStaffName.Text;
-        AStaff.EighteenPlus = chkEighteenPlus.Checked;
+        AStaff.EighteenPlus = CheckBox1.Checked;
         AStaff.StaffID = Convert.ToInt32(txtStaffID.Text);
         AStaff.Role = txtRole.Text;
         AStaff.Gender = txtGender.Text;
