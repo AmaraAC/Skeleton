@@ -6,18 +6,19 @@ namespace ClassLibrary
     {
         private Int32 mCustomerID;
 
-        public int CustomerID {
+        public int CustomerID
+        {
 
             get
             {
-               
+
                 return mCustomerID;
             }
             set
             {
                 mCustomerID = value;
             }
-        
+
         }
         private string mCustomerName;
         public string CustomerName
@@ -35,18 +36,20 @@ namespace ClassLibrary
         }
 
         private DateTime mDateJoined;
-        public DateTime DateJoined {
+        public DateTime DateJoined
+        {
             get
             {
                 return mDateJoined;
             }
-            set 
+            set
             {
                 mDateJoined = value;
-            } 
+            }
         }
         private bool mOver18;
-        public bool Over18 {
+        public bool Over18
+        {
             get
             {
                 return mOver18;
@@ -56,7 +59,7 @@ namespace ClassLibrary
                 mOver18 = value;
 
             }
-                }
+        }
         private string mGender;
         public string Gender
         {
@@ -70,33 +73,40 @@ namespace ClassLibrary
             }
         }
         private bool mMemberSubscription;
-        public bool MemberSubscription {
-            get 
+        public bool MemberSubscription
+        {
+            get
             {
                 return mMemberSubscription;
             }
-            set 
+            set
             {
                 mMemberSubscription = value;
-            } 
-        } 
+            }
+        }
 
         public bool Find(int CustomerID)
         {
-            //set the private data members to the test data value
-            mCustomerID = 21;
+            clsDataConnection DB = new clsDataConnection();
 
-            mCustomerName = "Jack";
+            DB.AddParameter("@CustomerID", CustomerID);
 
-            mDateJoined = Convert.ToDateTime("4/2/2022");
+            DB.Execute("sproc_tblCustomer_FilterbyCustomerID");
 
-            mOver18 = true ;
-
-            mGender = "Female";
-
-            mMemberSubscription = true;
-            //always return true
-            return true;
+            if (DB.Count == 1)
+            {
+                mCustomerID = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerID"]);
+                mCustomerName = Convert.ToString(DB.DataTable.Rows[0]["CustomerName"]);
+                mDateJoined = Convert.ToDateTime(DB.DataTable.Rows[0]["DateJoined"]);
+                mOver18 = Convert.ToBoolean(DB.DataTable.Rows[0]["Over18"]);
+                mGender = Convert.ToString(DB.DataTable.Rows[0]["Gender"]);
+                mMemberSubscription = Convert.ToBoolean(DB.DataTable.Rows[0]["MemberSubscription"]);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

@@ -89,7 +89,7 @@ namespace Testing2
 
             Boolean Found = false;
 
-            Int32 CustomerID = 14;
+            Int32 CustomerID = 1;
 
             Found = acustomer.Find(CustomerID);
 
@@ -104,11 +104,11 @@ namespace Testing2
 
             Boolean OK = true;
 
-            Int32 CustomerID = 14;
+            Int32 CustomerID = 1;
 
             Found = gg.Find(CustomerID);
 
-            if (gg.CustomerID != 14)
+            if (gg.CustomerID != 3)
             {
                 OK = false;
             }
@@ -124,7 +124,7 @@ namespace Testing2
 
             Boolean OK = true;
 
-            Int32 CustomerID = 14;
+            Int32 CustomerID = 1;
 
             Found = gg.Find(CustomerID);
 
@@ -144,7 +144,7 @@ namespace Testing2
 
             Boolean OK = true;
 
-            Int32 CustomerID = 21;
+            Int32 CustomerID = 1;
 
             Found = gg.Find(CustomerID);
 
@@ -164,7 +164,7 @@ namespace Testing2
 
             Boolean OK = true;
 
-            Int32 CustomerID = 21;
+            Int32 CustomerID = 1;
 
             Found = gg.Find(CustomerID);
 
@@ -184,7 +184,7 @@ namespace Testing2
 
             Boolean OK = true;
 
-            Int32 CustomerID = 21;
+            Int32 CustomerID = 1;
 
             Found = gg.Find(CustomerID);
 
@@ -204,7 +204,7 @@ namespace Testing2
 
             Boolean OK = true;
 
-            Int32 CustomerID = 21;
+            Int32 CustomerID = 1;
 
             Found = gg.Find(CustomerID);
 
