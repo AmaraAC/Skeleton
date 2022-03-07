@@ -31,4 +31,22 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Session["AnOrder"] = AnOrder;
         Response.Redirect("OrderViewer.aspx");
     }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        clsOrder anOrder = new clsOrder();
+        Int32 OrderID;
+        Boolean Found = false;
+        OrderID = Convert.ToInt32(txtOrderID.Text);
+        Found = anOrder.Find(OrderID);
+        if (Found == true)
+        {
+            txtCustomerName.Text = anOrder.CustumerName;
+            txtDateAdded.Text = anOrder.DateAdded.ToString();
+            txtFinalPrice.Text = anOrder.FinalPrice.ToString();
+            txtOrderAddress.Text = anOrder.OrderAddress;
+            chkDispatched.Checked = anOrder.Dispatched;
+
+        }
+    }
 }
