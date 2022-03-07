@@ -15,7 +15,7 @@ public partial class _1Viewer : System.Web.UI.Page
         Response.Write(AStaff.StaffName);
         Response.Write(AStaff.Gender);
         Response.Write(AStaff.JoinDate);
-        Response.Write(AStaff.StaffId);
+        Response.Write(AStaff.StaffID);
         Response.Write(AStaff.StaffName);
         Response.Write(AStaff.Role);
 
