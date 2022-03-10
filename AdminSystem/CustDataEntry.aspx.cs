@@ -29,4 +29,30 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //navigate to the viewer page
         Response.Redirect("CustViewer.aspx");
     }
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        clsCustomer gg = new clsCustomer();
+
+        Int32 CustomerID;
+
+        Boolean Found = false;
+
+        CustomerID = Convert.ToInt32(txtCustomerID.Text);
+
+        Found = gg.Find(CustomerID);
+
+        if (Found == true)
+        {
+            
+            txtCustomerName.Text = gg.CustomerName;
+            txtDateJoined.Text = gg.DateJoined.ToString();
+            txtGender.Text = gg.Gender;
+            chk18.Checked=gg.Over18;
+            chkMemberSubscription.Checked = gg.MemberSubscription;
+        
+
+        }
+
+    }
 }
