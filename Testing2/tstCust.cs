@@ -108,7 +108,7 @@ namespace Testing2
 
             Found = gg.Find(CustomerID);
 
-            if (gg.CustomerID != 3)
+            if (gg.CustomerID != 1)
             {
                 OK = false;
             }
@@ -128,7 +128,7 @@ namespace Testing2
 
             Found = gg.Find(CustomerID);
 
-            if (gg.CustomerName != "Jack")
+            if (gg.CustomerName != "Jake")
             {
                 OK = false;
             }
@@ -148,7 +148,7 @@ namespace Testing2
 
             Found = gg.Find(CustomerID);
 
-            if (gg.DateJoined != Convert.ToDateTime("4/2/2022"))
+            if (gg.DateJoined != Convert.ToDateTime("07/05/2018"))
             {
                 OK = false;
             }
@@ -188,7 +188,7 @@ namespace Testing2
 
             Found = gg.Find(CustomerID);
 
-            if (gg.Gender != "Female")
+            if (gg.Gender != "Male")
             {
                 OK = false;
             }
