@@ -100,11 +100,12 @@ namespace ClassLibrary
                 mDateJoined = Convert.ToDateTime(DB.DataTable.Rows[0]["DateJoined"]);
                 mOver18 = Convert.ToBoolean(DB.DataTable.Rows[0]["Over18"]);
                 mGender = Convert.ToString(DB.DataTable.Rows[0]["Gender"]);
-                mMemberSubscription = Convert.ToBoolean(DB.DataTable.Rows[0]["MemberSubscription"]);
+                mMemberSubscription = Convert.ToBoolean(DB.DataTable.Rows[0]["MemberSubcription"]);
                 return true;
             }
             else
             {
+                
                 return false;
             }
         }
