@@ -105,9 +105,63 @@ namespace ClassLibrary
             }
             else
             {
-                
+
                 return false;
             }
+        }
+        public string Valid(string CustomerName, string DateJoined, string Gender)
+        {
+
+            String Error = "";
+
+            DateTime DateTemp;
+
+            //if CustomerName is blank
+             if(CustomerName.Length==0)
+            {
+                Error = Error + "Your Customer Name may not be blank";
+            }
+             if(CustomerName.Length>6)
+            {
+                Error = Error + "Your Customer Name may not be blank";
+            }
+            try
+            {
+                //copy the dateAdded value to the DateTemp variable
+                DateTemp = Convert.ToDateTime(DateJoined);
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the past : ";
+
+                }
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the future : ";
+                }
+            }
+
+            catch
+            {
+                //record the error
+                Error = Error + "The date was not a valid date : ";
+
+            }
+            if (Gender.Length == 0)
+            {
+                //record the error
+                Error = Error + "The street may not be blank : ";
+            }
+            //if the street is too long
+            if (Gender.Length > 50)
+            {
+                //record the error
+                Error = Error + "The street must be less than 50 characters : ";
+            }
+
+
+            return Error;
         }
     }
 }
