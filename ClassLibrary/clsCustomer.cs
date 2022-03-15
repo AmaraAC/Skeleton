@@ -153,8 +153,8 @@ namespace ClassLibrary
                 //record the error
                 Error = Error + "The street may not be blank : ";
             }
-            //if the street is too long
-            if (Gender.Length > 50)
+            //if the gender is too long
+            if (Gender.Length > 6)
             {
                 //record the error
                 Error = Error + "The street must be less than 50 characters : ";

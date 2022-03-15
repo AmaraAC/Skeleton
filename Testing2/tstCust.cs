@@ -392,7 +392,7 @@ namespace Testing2
 
             Error = gg.Valid(CustomerName, DateJoined, Gender);
 
-            Assert.AreNotEqual(Error, "");
+            Assert.AreEqual(Error, "");
         }
         [TestMethod]
              public void DateJoinedMinPlusOne()
