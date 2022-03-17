@@ -105,7 +105,46 @@ namespace ClassLibrary
                 return false;
             }
         }
+        public string Valid(string OrderAdress, string CustomerName, string DateAdded)
+        {
+            String Error = "";
+            DateTime DateTemp;
+            if (OrderAdress.Length == 0)
+            {
+                Error = Error + "The Order Address may not be empty :";
+            }
+            if (OrderAdress.Length > 50)
+            {
+                Error = Error + "The order Address be less than 50 characters";
+            }
+            if (CustomerName.Length == 0)
+            {
+                Error = Error + "The Order Address may not be empty :";
+            }
+            if (CustomerName.Length > 50)
+            {
+                Error = Error + "The order Address be less than 50 characters";
+            }
+            try
+            {
+                DateTemp = Convert.ToDateTime(DateAdded);
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    Error = Error + "The Date cannt be in the past";
+                }
+                if (DateTemp > DateTime.Now.Date)
+                {
 
+                    Error = Error + "The Date cannot be in the future :";
+                }
+            }
+            catch
+            {
+                Error = Error + "The date was not a valid date ;";
+            }
+            return Error;
+
+        }
 
     }
 }
