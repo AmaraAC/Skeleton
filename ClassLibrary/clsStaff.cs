@@ -116,6 +116,58 @@ namespace ClassLibrary
             }
         }
 
+        public string Valid(string StaffName, string JoinDate, string Role, string Gender)
+        {
+            String Error = "";
+            DateTime DateTemp;
+            if (StaffName.Length == 0)
+            {
+                Error = Error + "The Staff Name may not be blank : ";
 
+            }
+            if (StaffName.Length > 50)
+            {
+                Error = Error + "The Staff Name must be less than 50 chracters : ";
+
+            }
+            if(Role.Length == 0)
+            {
+                Error = Error + "The Role may not be blank : ";
+
+            }
+            if (Role.Length > 50)
+            {
+                Error = Error + "The Role must be less than 50 chracters : ";
+
+            }
+            if (Gender.Length == 0)
+            {
+                Error = Error + "The Role may not be blank : ";
+
+            }
+            if (Gender.Length > 50)
+            {
+                Error = Error + "The Gender must be less than 50 chracters : ";
+
+            }
+            try
+            {
+                DateTemp = Convert.ToDateTime(JoinDate);
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    Error = Error + "The dae cannot be in the past : ";
+                }
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    Error = Error + "The date cannot be in the future : ";
+                }
+            }
+            catch
+            {
+                Error = Error + "The date was not a valid date : ";
+            }
+            return Error;
+
+        }
     }
 }
