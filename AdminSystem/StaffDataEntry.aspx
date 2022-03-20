@@ -29,7 +29,7 @@
         </p>
         <p>
             <asp:Label ID="chkEighteenPlus" runat="server" Text="Age  " width="102px"></asp:Label>
-            <asp:CheckBox ID="CheckBox1" runat="server" Text="18+" OnCheckedChanged="CheckBox1_CheckedChanged" />
+            <asp:CheckBox ID="EighteenPlus" runat="server" Text="18+" OnCheckedChanged="CheckBox1_CheckedChanged" />
         </p>
         <asp:Label ID="lblError" runat="server"></asp:Label>
         <br />
