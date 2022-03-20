@@ -16,17 +16,32 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnOK_Click(object sender, EventArgs e)
     {
-        clsStaff AStaff = new clsStaff();
-        AStaff.StaffName = txtStaffName.Text;
-        AStaff.EighteenPlus = CheckBox1.Checked;
-        AStaff.StaffID = Convert.ToInt32(txtStaffID.Text);
-        AStaff.Role = txtRole.Text;
-        AStaff.Gender = txtGender.Text;
-        AStaff.JoinDate = Convert.ToDateTime(txtJoinDate.Text);
+        clsStaff AnStaff = new clsStaff();
+        String StaffName = txtStaffName.Text;
+        String StaffID = txtStaffID.Text;
+        String Role = txtRole.Text;
+        String EighteenPlus = chkEighteenPlus.Text;
+        String Gender = txtGender.Text;
+        String JoinDate = txtJoinDate.Text;
+        String Error = "";
+        Error = AnStaff.Valid(StaffName, JoinDate,Role, Gender);
+        if (Error == "")
+        {
+            AnStaff.Role = Role;
+            AnStaff.Gender = Gender;
+            AnStaff.StaffName = StaffName;
+            AnStaff.JoinDate = Convert.ToDateTime(JoinDate);
+            AnStaff.StaffID = Convert.ToInt32(StaffID);
+            AnStaff.EighteenPlus = Convert.ToBoolean(EighteenPlus);
 
-        Session["AnStaff"] = AStaff;
-        Response.Redirect("StaffViewer.aspx");
+            Session["AnStaff"] = AnStaff;
+            Response.Write("StaffViewer.aspx");
 
+        }
+        else
+        {
+            lblError.Text = Error;
+        }
     }
 
     protected void Button1_Click(object sender, EventArgs e)
@@ -43,7 +58,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtGender.Text = AnStaff.Gender;
             txtJoinDate.Text = AnStaff.JoinDate.ToString();
             txtRole.Text = AnStaff.Role;
-            CheckBox1.Checked = AnStaff.EighteenPlus;
+            EighteenPlus.Checked = AnStaff.EighteenPlus;
 
 
         }
