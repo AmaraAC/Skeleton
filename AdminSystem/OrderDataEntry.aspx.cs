@@ -22,14 +22,22 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         //Navigate to the viwer page
         clsOrder AnOrder = new clsOrder();
-        AnOrder.DateAdded = Convert.ToDateTime(txtDateAdded.Text);
-        AnOrder.Dispatched = chkDispatched.Checked;
-        AnOrder.OrderAddress = txtOrderAddress.Text;
-        AnOrder.FinalPrice = Convert.ToDouble(txtFinalPrice.Text);
-        AnOrder.OrderID = Convert.ToInt32(txtOrderID.Text);
-        AnOrder.CustumerName = txtCustomerName.Text;
-        Session["AnOrder"] = AnOrder;
-        Response.Redirect("OrderViewer.aspx");
+        String DateAdded = txtDateAdded.Text;
+        String OrderAddress = txtOrderAddress.Text;
+        String CustomerName = txtCustomerName.Text;
+        string Error = "";
+        Error = AnOrder.Valid(OrderAddress, CustomerName, DateAdded);
+        if (Error == "")
+        {
+            AnOrder.OrderAddress = OrderAddress;
+            AnOrder.CustumerName = CustomerName;
+            AnOrder.DateAdded = Convert.ToDateTime(DateAdded);
+
+        }
+        else
+        {
+            lblError.Text = Error;
+        }
     }
 
     protected void Button1_Click(object sender, EventArgs e)
