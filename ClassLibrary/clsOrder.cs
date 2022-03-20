@@ -115,15 +115,15 @@ namespace ClassLibrary
             }
             if (OrderAdress.Length > 50)
             {
-                Error = Error + "The order Address be less than 50 characters";
+                Error = Error + "The order Address must be less than 50 characters";
             }
             if (CustomerName.Length == 0)
             {
-                Error = Error + "The Order Address may not be empty :";
+                Error = Error + "The Customer Name must may not be empty :";
             }
             if (CustomerName.Length > 50)
             {
-                Error = Error + "The order Address be less than 50 characters";
+                Error = Error + "The Customer Name must be less than 50 characters";
             }
             try
             {
