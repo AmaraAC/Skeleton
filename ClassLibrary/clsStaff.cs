@@ -122,7 +122,7 @@ namespace ClassLibrary
             DateTime DateTemp;
             if (StaffName.Length == 0)
             {
-                Error = Error + "The Staff Name may not be blank : ";
+                Error = Error + "The Staff Name may be blank : ";
 
             }
             if (StaffName.Length > 50)
@@ -132,7 +132,7 @@ namespace ClassLibrary
             }
             if(Role.Length == 0)
             {
-                Error = Error + "The Role may not be blank : ";
+                Error = Error + "The Role may be blank : ";
 
             }
             if (Role.Length > 50)
@@ -142,7 +142,7 @@ namespace ClassLibrary
             }
             if (Gender.Length == 0)
             {
-                Error = Error + "The Role may not be blank : ";
+                Error = Error + "The Role may be blank : ";
 
             }
             if (Gender.Length > 50)
