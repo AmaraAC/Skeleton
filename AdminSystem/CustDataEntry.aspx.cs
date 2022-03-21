@@ -17,17 +17,29 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         //create a new instance of clsAddress
         clsCustomer gg = new clsCustomer();
-        //capture the customerid
-        gg.CustomerID = Convert.ToInt32(txtCustomerID.Text);
-        gg.CustomerName = txtCustomerName.Text;
-        gg.DateJoined = Convert.ToDateTime(txtDateJoined.Text);
-        gg.Over18 = chk18.Checked;
-        gg.Gender = txtGender.Text;
-        gg.MemberSubscription = chkMemberSubscription.Checked;
-        //store the id in the session object
-        Session["An ID"] = gg;
-        //navigate to the viewer page
-        Response.Redirect("CustViewer.aspx");
+        //capture the fields
+        string CustomerName= txtCustomerName.Text;
+        string DateJoined =txtDateJoined.Text;
+        string Gender = txtGender.Text;
+
+        string Error = "";
+
+        Error = gg.Valid(CustomerName,DateJoined,Gender);
+        if(Error == "")
+        {
+            gg.CustomerName = CustomerName;
+                gg.DateJoined = Convert.ToDateTime(DateJoined);
+                gg.Gender = Gender;
+            //store the id in the session object
+            Session["An ID"] = gg;
+
+            //navigate to the viewer page
+            Response.Redirect("CustViewer.aspx");
+        }
+      else
+        {
+            lblError.Text = Error;
+        }
     }
 
     protected void btnFind_Click(object sender, EventArgs e)
