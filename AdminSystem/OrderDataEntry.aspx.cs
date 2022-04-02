@@ -30,7 +30,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         if (Error == "")
         {
             AnOrder.OrderAddress = OrderAddress;
-            AnOrder.CustumerName = CustomerName;
+            AnOrder.CustomerName = CustomerName;
             AnOrder.DateAdded = Convert.ToDateTime(DateAdded);
 
         }
@@ -49,7 +49,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Found = anOrder.Find(OrderID);
         if (Found == true)
         {
-            txtCustomerName.Text = anOrder.CustumerName;
+            txtCustomerName.Text = anOrder.CustomerName;
             txtDateAdded.Text = anOrder.DateAdded.ToString();
             txtFinalPrice.Text = anOrder.FinalPrice.ToString();
             txtOrderAddress.Text = anOrder.OrderAddress;

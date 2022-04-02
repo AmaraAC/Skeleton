@@ -12,7 +12,7 @@ public partial class _1Viewer : System.Web.UI.Page
     {
         clsOrder AnOrder = new clsOrder();
         AnOrder = (clsOrder) Session["AnOrder"];
-        Response.Write(AnOrder.CustumerName);
+        Response.Write(AnOrder.CustomerName);
         Response.Write(AnOrder.DateAdded);
         Response.Write(AnOrder.Dispatched);
         Response.Write(AnOrder.FinalPrice);
