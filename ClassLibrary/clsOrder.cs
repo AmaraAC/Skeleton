@@ -55,7 +55,7 @@ namespace ClassLibrary
                 mOrderAddress = value;
             }
         }
-        public string CustumerName
+        public string CustomerName
         {
             get
             {

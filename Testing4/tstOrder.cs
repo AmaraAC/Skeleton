@@ -88,7 +88,7 @@ namespace Testing4
             Boolean OK = true;
             Int32 OrderID = 3;
             Found = anOrder.Find(OrderID);
-            if (anOrder.CustumerName != "Baba Tunde")
+            if (anOrder.CustomerName != "Baba Tunde")
             {
                 OK = false;
             }
@@ -139,8 +139,8 @@ namespace Testing4
         {
             clsOrder AnOrder = new clsOrder();
             String TestData = "Fetty Wap";
-            AnOrder.CustumerName = TestData;
-            Assert.AreEqual(AnOrder.CustumerName, TestData);
+            AnOrder.CustomerName = TestData;
+            Assert.AreEqual(AnOrder.CustomerName, TestData);
         }
         [TestMethod]
         public void FinalPricePropertyOK()
