@@ -8,9 +8,29 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 OrderID;
     protected void Page_Load(object sender, EventArgs e)
     {
+        
+        OrderID = Convert.ToInt32(Session["OrderID"]);
+        if (IsPostBack == false)
+        {
+            if (OrderID != -1)
+            {
+                DisplayOrders();
+            }
+        }
+    }
 
+     void DisplayOrders()
+    {
+        clsOrderCollection AnOrderBook = new clsOrderCollection();
+        AnOrderBook.ThisOrder.Find(OrderID);
+        txtCustomerName.Text = AnOrderBook.ThisOrder.CustomerName;
+        txtDateAdded.Text = AnOrderBook.ThisOrder.DateAdded.ToString();
+        txtFinalPrice.Text = AnOrderBook.ThisOrder.FinalPrice.ToString();
+        txtOrderAddress.Text = AnOrderBook.ThisOrder.OrderAddress;
+        txtOrderID.Text = AnOrderBook.ThisOrder.OrderID.ToString();
     }
 
     protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
@@ -32,6 +52,23 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AnOrder.OrderAddress = OrderAddress;
             AnOrder.CustomerName = CustomerName;
             AnOrder.DateAdded = Convert.ToDateTime(DateAdded);
+            AnOrder.Dispatched = chkDispatched.Checked;
+            clsOrderCollection OrderList = new clsOrderCollection();
+            OrderList.ThisOrder = AnOrder;
+            OrderList.Add();
+            Response.Redirect("OrderList.aspx");
+            if (OrderID == -1)
+            {
+                OrderList.ThisOrder = AnOrder;
+                OrderList.Add();
+            }
+            else 
+            {
+                OrderList.ThisOrder.Find(OrderID);
+                OrderList.ThisOrder = AnOrder;
+                OrderList.Update();
+            }
+            Response.Redirect("OrderList.aspx");
 
         }
         else

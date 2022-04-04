@@ -62,6 +62,47 @@ namespace Testing4
             AllOrders.OrderList = TestList;
             Assert.AreEqual(AllOrders.Count, TestList.Count);
         }
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            clsOrder TestItem = new clsOrder();
+            Int32 PrimaryKey = 0;
+            TestItem.Dispatched = true;
+            TestItem.DateAdded = DateTime.Now.Date;
+            TestItem.OrderAddress = "Random Street";
+            TestItem.FinalPrice = 17.38;
+            TestItem.CustomerName = "Howdy Partner";
+            AllOrders.ThisOrder = TestItem;
+            PrimaryKey = AllOrders.Add();
+            AllOrders.ThisOrder.Find(PrimaryKey);
+            Assert.AreEqual(AllOrders.ThisOrder, TestItem);
+
+        }
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            clsOrder TestItem = new clsOrder();
+            Int32 PrimaryKey = 0;
+            TestItem.Dispatched = true;
+            TestItem.DateAdded = DateTime.Now.Date;
+            TestItem.OrderAddress = "Random Street";
+            TestItem.FinalPrice = 17.38;
+            TestItem.CustomerName = "Howdy Partner";
+            AllOrders.ThisOrder = TestItem;
+            PrimaryKey = AllOrders.Add();
+            TestItem.Dispatched = false;
+            TestItem.DateAdded = DateTime.Now.Date;
+            TestItem.OrderAddress = "XXX Street";
+            TestItem.FinalPrice = 17.38;
+            TestItem.CustomerName = "XXX Partner";
+            AllOrders.ThisOrder = TestItem;
+            AllOrders.Update();
+            AllOrders.ThisOrder.Find(PrimaryKey);
+            Assert.AreEqual(AllOrders.ThisOrder, TestItem);
+        }
+        
 
 
     }
