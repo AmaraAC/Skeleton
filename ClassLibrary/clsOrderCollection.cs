@@ -6,6 +6,7 @@ namespace ClassLibrary
 {
     public class clsOrderCollection
     {
+        clsOrder mThisOrder = new clsOrder();
         List<clsOrder> mOrderList = new List<clsOrder>();
 
         public clsOrderCollection()
@@ -52,10 +53,42 @@ namespace ClassLibrary
             {
             }
         }
-        public clsOrder ThisOrder { get; set; }
+        public clsOrder ThisOrder
+        {
+            get
+            {
+                return mThisOrder;
+            }
+            set
+            {
+                mThisOrder = value;
+            }
+        }
 
-    
+        public int Add()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@OrderAddress", mThisOrder.OrderAddress);
+            DB.AddParameter("@DateAdded", mThisOrder.DateAdded);
+            DB.AddParameter("@CustomerName", mThisOrder.CustomerName);
+            DB.AddParameter("@FinalPrice", mThisOrder.FinalPrice);
+            DB.AddParameter("@Dispatched", mThisOrder.Dispatched);
 
+            return DB.Execute("sproc_tblOrder_Insert");
+        }
 
+        public void Update()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@OrderID", mThisOrder.OrderID);
+
+            DB.AddParameter("@OrderAddress", mThisOrder.OrderAddress);
+            DB.AddParameter("@DateAdded", mThisOrder.DateAdded);
+            DB.AddParameter("@CustomerName", mThisOrder.CustomerName);
+            DB.AddParameter("@FinalPrice", mThisOrder.FinalPrice);
+            DB.AddParameter("@Dispatched", mThisOrder.Dispatched);
+            DB.Execute("sproc_tblOrder_Update");
+
+        }
     }
 }

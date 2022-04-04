@@ -23,4 +23,27 @@ public partial class _1_List : System.Web.UI.Page
         lstOrderList.DataTextField = "CustomerName";
         lstOrderList.DataBind();
     }
+
+    protected void btnAdd_Click(object sender, EventArgs e)
+    {
+        Session["OrderID"] = -1;
+        Response.Redirect("OrderDataEntry.aspx");
+    }
+
+    protected void btnEdit_Click(object sender, EventArgs e)
+    {
+        Int32 OrderID;
+        if(lstOrderList.SelectedIndex != 1)
+        {
+            OrderID = Convert.ToInt32(lstOrderList.SelectedValue);
+            Session["OrderID"] = OrderID;
+            Response.Redirect("OrderDataEntry.aspx");
+
+        }
+        else
+        {
+            lblError.Text = "Please Select a record to edit from the list";
+        }
+
+    }
 }
