@@ -155,7 +155,7 @@ namespace ClassLibrary
                 DateTemp = Convert.ToDateTime(JoinDate);
                 if (DateTemp < DateTime.Now.Date)
                 {
-                    Error = Error + "The dae cannot be in the past : ";
+                    Error = Error + "The date cannot be in the past : ";
                 }
                 if (DateTemp > DateTime.Now.Date)
                 {
