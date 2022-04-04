@@ -10,6 +10,13 @@
     <form id="form1" runat="server">
         <div>
         </div>
+        <asp:TextBox ID="TextBox1" runat="server" Height="41px" OnTextChanged="TextBox1_TextChanged" Width="316px">Are you sure you want to delte this record?</asp:TextBox>
+        <p>
+            <asp:Button ID="btnYes" runat="server" OnClick="btnYes_Click" Text="Yes" />
+            <asp:Button ID="btnNo" runat="server" Text="No" />
+        </p>
+        <p>
+            &nbsp;</p>
     </form>
 </body>
 </html>

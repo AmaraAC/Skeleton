@@ -9,33 +9,53 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 StaffID;
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        StaffID = Convert.ToInt32(Session["StaffID"]);
+        if (IsPostBack == false)
+        {
+            if (StaffID != -1)
+            {
+                DisplayStaff();
+            }
+        }
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
     {
         clsStaff AnStaff = new clsStaff();
-        String StaffName = txtStaffName.Text;
         String StaffID = txtStaffID.Text;
-        String Role = txtRole.Text;
-        String EighteenPlus = chkEighteenPlus.Text;
-        String Gender = txtGender.Text;
+        String StaffName = txtStaffName.Text;
         String JoinDate = txtJoinDate.Text;
+        String Role = txtRole.Text;
+        String Gender = txtGender.Text;
+        Boolean chkEighteenPlus = EighteenPlus.Checked;
         String Error = "";
         Error = AnStaff.Valid(StaffName, JoinDate,Role, Gender);
         if (Error == "")
         {
-            AnStaff.Role = Role;
-            AnStaff.Gender = Gender;
+            AnStaff.StaffID = Convert.ToInt32(StaffID);
             AnStaff.StaffName = StaffName;
             AnStaff.JoinDate = Convert.ToDateTime(JoinDate);
-            AnStaff.StaffID = Convert.ToInt32(StaffID);
-            AnStaff.EighteenPlus = Convert.ToBoolean(EighteenPlus);
+            AnStaff.Role = Role;
+            AnStaff.Gender = Gender;
+            AnStaff.EighteenPlus = chkEighteenPlus;
 
-            Session["AnStaff"] = AnStaff;
-            Response.Write("StaffViewer.aspx");
+            clsStaffCollection StaffList = new clsStaffCollection();
+            if ((Convert.ToInt32(StaffID) == -1))
+            {
+                StaffList.ThisStaff = AnStaff;
+                StaffList.Add();
+            }
+            else
+            {
+                StaffList.ThisStaff.Find(Convert.ToInt32(StaffID));
+                StaffList.ThisStaff = AnStaff;
+                StaffList.Update();
+            }
+            
+            Response.Redirect("StaffList.aspx");
 
         }
         else
@@ -67,5 +87,16 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
     {
 
+    }
+    void DisplayStaff()
+    {
+        clsStaffCollection StaffBook = new clsStaffCollection();
+        StaffBook.ThisStaff.Find(StaffID);
+        txtStaffID.Text = StaffBook.ThisStaff.StaffID.ToString();
+        txtStaffName.Text = StaffBook.ThisStaff.StaffName;
+        txtJoinDate.Text = StaffBook.ThisStaff.JoinDate.ToString();
+        txtRole.Text = StaffBook.ThisStaff.Role;
+        txtGender.Text = StaffBook.ThisStaff.Gender;
+        EighteenPlus.Checked = StaffBook.ThisStaff.EighteenPlus;
     }
 }
