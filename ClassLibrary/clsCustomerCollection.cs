@@ -6,15 +6,16 @@ namespace ClassLibrary
     public class clsCustomerCollection
     {
         List<clsCustomer> mCustomerList = new List<clsCustomer>();
-      
+        clsCustomer mThisCustomer = new clsCustomer();
 
         public clsCustomerCollection()
         {
+            
+            clsDataConnection DB = new clsDataConnection();
+
             Int32 Index = 0;
 
             Int32 RecordCount = 0;
-
-            clsDataConnection DB = new clsDataConnection();
 
             DB.Execute("sproc_tblCustomer_SelectAll");
 
@@ -36,23 +37,6 @@ namespace ClassLibrary
                 Index++;
 
 
-                //gg.CustomerID = 1;
-                //gg.CustomerName = "Jake";
-                //gg.DateJoined = DateTime.Now.Date;
-                //gg.Gender = "Male";
-                //gg.MemberSubscription = true;
-                //gg.Over18 = true;
-                //mCustomerList.Add(gg);
-                //.............
-                //gg = new clsCustomer();
-
-                //gg.CustomerID = 2;
-                //gg.CustomerName = "Joe";
-                //gg.DateJoined = DateTime.Now.Date;
-                //gg.Gender = "Female";
-                //gg.MemberSubscription = true;
-                //gg.Over18 = true;
-                //mCustomerList.Add(gg);
             }
         }
         public List<clsCustomer> CustomerList {
@@ -65,7 +49,18 @@ namespace ClassLibrary
                 mCustomerList = value;
             } 
         }
-        public clsCustomer ThisCustomer { get; set; }
+        public clsCustomer ThisCustomer
+        {
+            get
+            {
+                return mThisCustomer;
+            }
+            set
+            {
+                mThisCustomer = value;
+            }
+        }
+
         public int Count 
         {
             get
@@ -76,6 +71,13 @@ namespace ClassLibrary
             {
 
             }
+        }
+
+        public int Add()
+        {
+            mThisCustomer.CustomerID = 123;
+
+            return mThisCustomer.CustomerID;
         }
     }
 }

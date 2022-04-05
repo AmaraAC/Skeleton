@@ -84,5 +84,35 @@ namespace Testing2
             Assert.AreEqual(gg.Count, testg.Count);
 
         }
+
+        [TestMethod]
+
+    public void AddMethodOK()
+        {
+           clsCustomerCollection AllCustomers = new clsCustomerCollection();
+
+            clsCustomer TestItem = new clsCustomer();
+
+            Int32 PrimaryKey = 0;
+
+            TestItem.CustomerID = 1;
+            TestItem.CustomerName = "Jake";
+            TestItem.DateJoined = DateTime.Now.Date;
+            TestItem.Gender = "Male";
+            TestItem.MemberSubscription = true;
+            TestItem.Over18 = true;
+            AllCustomers.ThisCustomer = TestItem;
+            PrimaryKey = AllCustomers.Add();
+            TestItem.CustomerID = PrimaryKey;
+            AllCustomers.ThisCustomer.Find(PrimaryKey);
+            Assert.AreEqual(AllCustomers.ThisCustomer, TestItem);
+        }
+
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+
+        }
+
     }
 }
