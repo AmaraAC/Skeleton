@@ -85,6 +85,8 @@ namespace ClassLibrary
             }
         }
 
+        public clsCustomer ThisCustomer { get; set; }
+
         public bool Find(int CustomerID)
         {
             clsDataConnection DB = new clsDataConnection();
@@ -163,5 +165,7 @@ namespace ClassLibrary
 
             return Error;
         }
+
+        
     }
 }
