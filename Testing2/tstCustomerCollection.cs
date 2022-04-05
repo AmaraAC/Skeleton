@@ -37,18 +37,8 @@ namespace Testing2
             Assert.AreEqual(gg.CustomerList,TestList);
         }
 
-        [TestMethod]
-        public void CountPropertyOK()
-        {
-            clsCustomerCollection gg = new clsCustomerCollection();
-
-            Int32 SomeCount = 2;
-
-            gg.Count = SomeCount;
-
-            Assert.AreEqual(gg.Count, SomeCount);
-
-        }
+        
+        
 
         [TestMethod]
         public void ThisCustomerPropertyOK()
