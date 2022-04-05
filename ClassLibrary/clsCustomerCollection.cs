@@ -29,7 +29,7 @@ namespace ClassLibrary
                 gg.CustomerName = Convert.ToString(DB.DataTable.Rows[Index]["CustomerName"]);
                 gg.DateJoined = Convert.ToDateTime(DB.DataTable.Rows[Index]["DateJoined"]);
                 gg.Gender = Convert.ToString(DB.DataTable.Rows[Index]["Gender"]);
-                gg.MemberSubscription = Convert.ToBoolean(DB.DataTable.Rows[Index]["MemberSubscription"]);
+                gg.MemberSubscription = Convert.ToBoolean(DB.DataTable.Rows[Index]["MemberSubcription"]);
                 gg.Over18 = Convert.ToBoolean(DB.DataTable.Rows[Index]["Over18"]);
 
                 mCustomerList.Add(gg);
@@ -75,9 +75,29 @@ namespace ClassLibrary
 
         public int Add()
         {
-            mThisCustomer.CustomerID = 123;
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@CustomerName", mThisCustomer.CustomerName);
+            DB.AddParameter("@DateJoined", mThisCustomer.DateJoined);
+            DB.AddParameter("@Gender", mThisCustomer.Gender);
+            DB.AddParameter("@MemberSubscription", mThisCustomer.MemberSubscription);
+            DB.AddParameter("@Over18", mThisCustomer.Over18);
 
-            return mThisCustomer.CustomerID;
+            return DB.Execute("sproc_tblCustomer_Insert");
+        }
+
+        public void Update()
+        {
+            clsDataConnection DB = new clsDataConnection();
+
+            DB.AddParameter("@CustomerID", mThisCustomer.CustomerID);
+
+            DB.AddParameter("@CustomerName", mThisCustomer.CustomerName);
+            DB.AddParameter("@DateJoined", mThisCustomer.DateJoined);
+            DB.AddParameter("@Gender", mThisCustomer.Gender);
+            DB.AddParameter("@MemberSubscription", mThisCustomer.MemberSubscription);
+            DB.AddParameter("@Over18", mThisCustomer.Over18);
+
+            DB.Execute("sproc_tblCustomer_Update");
         }
     }
 }

@@ -111,7 +111,27 @@ namespace Testing2
         [TestMethod]
         public void UpdateMethodOK()
         {
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            clsCustomer TestItem = new clsCustomer();
+            Int32 PrimaryKey = 0;
+            TestItem.Over18 = true;
+            TestItem.DateJoined = DateTime.Now.Date;
+            TestItem.CustomerName = "Jane Janet";
+            TestItem.MemberSubscription = false;
+            TestItem.Gender = "Female";
+            AllCustomers.ThisCustomer = TestItem;
+            PrimaryKey = AllCustomers.Add();
 
+            TestItem.Over18 = false;
+            TestItem.DateJoined = DateTime.Now.Date;
+            TestItem.CustomerName = "Janet Jane";
+            TestItem.MemberSubscription = true;
+            TestItem.Gender = "Male";
+
+            AllCustomers.ThisCustomer = TestItem;
+            AllCustomers.Update();
+            AllCustomers.ThisCustomer.Find(PrimaryKey);
+            Assert.AreEqual(AllCustomers.ThisCustomer, TestItem);
         }
 
     }

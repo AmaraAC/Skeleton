@@ -8,14 +8,29 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 CustomerID;
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        CustomerID = Convert.ToInt32(Session["CustomerID"]);
+        if (IsPostBack == false)
+        {
+            DisplayCustomer();
+        }
+    }
+
+    void DisplayCustomer()
+    {
+        clsCustomerCollection AnOrderBook = new clsCustomerCollection();
+        AnOrderBook.ThisCustomer.Find(CustomerID);
+        txtCustomerName.Text = AnOrderBook.ThisCustomer.CustomerName;
+        txtDateJoined.Text = AnOrderBook.ThisCustomer.DateJoined.ToString();
+        txtGender.Text = AnOrderBook.ThisCustomer.Gender.ToString();
+      
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
     {
-        //create a new instance of clsAddress
+        //create a new instance of clsCustomer
         clsCustomer gg = new clsCustomer();
         //capture the fields
         string CustomerName= txtCustomerName.Text;
@@ -30,11 +45,25 @@ public partial class _1_DataEntry : System.Web.UI.Page
             gg.CustomerName = CustomerName;
                 gg.DateJoined = Convert.ToDateTime(DateJoined);
                 gg.Gender = Gender;
-            //store the id in the session object
-            Session["An ID"] = gg;
+            gg.Over18 = chk18.Checked;
+            gg.MemberSubscription = chkMemberSubscription.Checked;
+            clsCustomerCollection CustomerList = new clsCustomerCollection();
 
-            //navigate to the viewer page
-            Response.Redirect("CustViewer.aspx");
+            if (CustomerID == -1)
+            {
+                CustomerList.ThisCustomer = gg;
+                CustomerList.Add();
+            }
+            else
+            {
+                CustomerList.ThisCustomer.Find(CustomerID);
+
+                CustomerList.ThisCustomer = gg;
+
+                CustomerList.Update();
+            }
+
+            Response.Redirect("CustList.aspx");
         }
       else
         {
