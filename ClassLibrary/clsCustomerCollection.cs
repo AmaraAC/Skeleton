@@ -10,36 +10,38 @@ namespace ClassLibrary
 
         public clsCustomerCollection()
         {
-            
+
             clsDataConnection DB = new clsDataConnection();
 
-            Int32 Index = 0;
+            //Int32 Index = 0;
 
-            Int32 RecordCount = 0;
+            //Int32 RecordCount = 0;
 
             DB.Execute("sproc_tblCustomer_SelectAll");
+            PopulateArray(DB);
 
-            RecordCount = DB.Count;
+           // RecordCount = DB.Count;
 
-            while (Index < RecordCount)
-            {
-                clsCustomer gg = new clsCustomer();
+           /// while (Index < RecordCount)
+            //{
+               // clsCustomer gg = new clsCustomer();
 
-                gg.CustomerID = Convert.ToInt32(DB.DataTable.Rows[Index]["CustomerID"]);
-                gg.CustomerName = Convert.ToString(DB.DataTable.Rows[Index]["CustomerName"]);
-                gg.DateJoined = Convert.ToDateTime(DB.DataTable.Rows[Index]["DateJoined"]);
-                gg.Gender = Convert.ToString(DB.DataTable.Rows[Index]["Gender"]);
-                gg.MemberSubscription = Convert.ToBoolean(DB.DataTable.Rows[Index]["MemberSubcription"]);
-                gg.Over18 = Convert.ToBoolean(DB.DataTable.Rows[Index]["Over18"]);
+             //   gg.CustomerID = Convert.ToInt32(DB.DataTable.Rows[Index]["CustomerID"]);
+             //   gg.CustomerName = Convert.ToString(DB.DataTable.Rows[Index]["CustomerName"]);
+              //  gg.DateJoined = Convert.ToDateTime(DB.DataTable.Rows[Index]["DateJoined"]);
+              //  gg.Gender = Convert.ToString(DB.DataTable.Rows[Index]["Gender"]);
+              //  gg.MemberSubscription = Convert.ToBoolean(DB.DataTable.Rows[Index]["MemberSubcription"]);
+              //  gg.Over18 = Convert.ToBoolean(DB.DataTable.Rows[Index]["Over18"]);
 
-                mCustomerList.Add(gg);
+              //  mCustomerList.Add(gg);
 
-                Index++;
+               // Index++;
 
 
-            }
+           // }
         }
-        public List<clsCustomer> CustomerList {
+        public List<clsCustomer> CustomerList
+        {
             get
             {
                 return mCustomerList;
@@ -47,7 +49,7 @@ namespace ClassLibrary
             set
             {
                 mCustomerList = value;
-            } 
+            }
         }
         public clsCustomer ThisCustomer
         {
@@ -61,7 +63,7 @@ namespace ClassLibrary
             }
         }
 
-        public int Count 
+        public int Count
         {
             get
             {
@@ -98,6 +100,54 @@ namespace ClassLibrary
             DB.AddParameter("@Over18", mThisCustomer.Over18);
 
             DB.Execute("sproc_tblCustomer_Update");
+        }
+
+        public void Delete()
+        {
+            clsDataConnection DB = new clsDataConnection();
+
+            DB.AddParameter("@CustomerID", mThisCustomer.CustomerID);
+
+            DB.Execute("sproc_tblCustomer_Delete");
+        }
+
+        public void ReportByCustomerName(string CustomerName)
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@CustomerName", CustomerName);
+            DB.Execute("sproc_tblCustomer_FilterByCustomerName");
+             PopulateArray(DB);
+        }
+
+        void PopulateArray(clsDataConnection DB)
+        {
+            Int32 Index = 0;
+
+            Int32 RecordCount;
+
+            RecordCount = DB.Count;
+
+            mCustomerList = new List<clsCustomer>();
+
+
+
+            while (Index < RecordCount)
+            {
+                clsCustomer gg = new clsCustomer();
+
+                gg.CustomerID = Convert.ToInt32(DB.DataTable.Rows[Index]["CustomerID"]);
+                gg.CustomerName = Convert.ToString(DB.DataTable.Rows[Index]["CustomerName"]);
+                gg.DateJoined = Convert.ToDateTime(DB.DataTable.Rows[Index]["DateJoined"]);
+                gg.Gender = Convert.ToString(DB.DataTable.Rows[Index]["Gender"]);
+                gg.MemberSubscription = Convert.ToBoolean(DB.DataTable.Rows[Index]["MemberSubcription"]);
+                gg.Over18 = Convert.ToBoolean(DB.DataTable.Rows[Index]["Over18"]);
+
+                mCustomerList.Add(gg);
+
+                Index++;
+
+
+            }
         }
     }
 }

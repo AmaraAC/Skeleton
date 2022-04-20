@@ -14,17 +14,26 @@ public partial class _1_DataEntry : System.Web.UI.Page
         CustomerID = Convert.ToInt32(Session["CustomerID"]);
         if (IsPostBack == false)
         {
-            DisplayCustomer();
+            if (CustomerID != -1)
+            {
+                DisplayCustomer();
+            }
         }
     }
 
     void DisplayCustomer()
     {
-        clsCustomerCollection AnOrderBook = new clsCustomerCollection();
-        AnOrderBook.ThisCustomer.Find(CustomerID);
-        txtCustomerName.Text = AnOrderBook.ThisCustomer.CustomerName;
-        txtDateJoined.Text = AnOrderBook.ThisCustomer.DateJoined.ToString();
-        txtGender.Text = AnOrderBook.ThisCustomer.Gender.ToString();
+        clsCustomerCollection CustomerBook = new clsCustomerCollection();
+
+        CustomerBook.ThisCustomer.Find(CustomerID);
+
+        txtCustomerName.Text = CustomerBook.ThisCustomer.CustomerName;
+        txtDateJoined.Text = CustomerBook.ThisCustomer.DateJoined.ToString();
+        txtGender.Text = CustomerBook.ThisCustomer.Gender.ToString();
+        txtCustomerID.Text = CustomerBook.ThisCustomer.CustomerID.ToString();
+        chk18.Checked = CustomerBook.ThisCustomer.Over18;
+        chkMemberSubscription.Checked = CustomerBook.ThisCustomer.MemberSubscription;
+
       
     }
 
@@ -42,6 +51,8 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Error = gg.Valid(CustomerName,DateJoined,Gender);
         if(Error == "")
         {
+
+            gg.CustomerID = CustomerID;
             gg.CustomerName = CustomerName;
                 gg.DateJoined = Convert.ToDateTime(DateJoined);
                 gg.Gender = Gender;
