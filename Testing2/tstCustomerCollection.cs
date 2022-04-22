@@ -185,11 +185,11 @@ namespace Testing2
             if (FilteredNames.Count == 2)
             {
 
-                if (FilteredNames.CustomerList[0].CustomerID != 3)
+                if (FilteredNames.CustomerList[0].CustomerID != 12)
                 {
                     ok = false;
                 }
-                if (FilteredNames.CustomerList[1].CustomerID != 4)
+                if (FilteredNames.CustomerList[1].CustomerID != 18)
                 {
                     ok = false;
                 }

@@ -304,7 +304,8 @@ namespace Testing2
 
             String Error = "";
 
-            string CustomerName = "ggggggg";
+            String CustomerName = "";
+             CustomerName = CustomerName.PadRight(51, 'g');
 
             Error = gg.Valid(CustomerName, DateJoined, Gender);
 

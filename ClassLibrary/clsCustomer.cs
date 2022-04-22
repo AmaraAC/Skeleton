@@ -123,7 +123,7 @@ namespace ClassLibrary
             {
                 Error = Error + "Your Customer Name may not be blank";
             }
-             if(CustomerName.Length>6)
+             if(CustomerName.Length>50)
             {
                 Error = Error + "Your Customer Name may not be blank";
             }
