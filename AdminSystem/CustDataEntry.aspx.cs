@@ -29,7 +29,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
         txtCustomerName.Text = CustomerBook.ThisCustomer.CustomerName;
         txtDateJoined.Text = CustomerBook.ThisCustomer.DateJoined.ToString();
-        txtGender.Text = CustomerBook.ThisCustomer.Gender.ToString();
+        txtGender.Text = CustomerBook.ThisCustomer.Gender;
         txtCustomerID.Text = CustomerBook.ThisCustomer.CustomerID.ToString();
         chk18.Checked = CustomerBook.ThisCustomer.Over18;
         chkMemberSubscription.Checked = CustomerBook.ThisCustomer.MemberSubscription;
