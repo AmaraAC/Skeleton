@@ -26,11 +26,11 @@ public partial class _1_List : System.Web.UI.Page
         lstCustomerList.DataBind();
     }
 
-    protected void Button1_Click(object sender, EventArgs e)
+    protected void btnAdd_Click(object sender, EventArgs e)
     {
         Session["CustomerID"] = -1;
 
-        Response.Redirect("CustDataEntry.apsx");
+        Response.Redirect("CustDataEntry.aspx");
     }
 
     protected void btnEdit_Click(object sender, EventArgs e)
