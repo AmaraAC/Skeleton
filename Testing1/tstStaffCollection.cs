@@ -159,11 +159,11 @@ namespace Test_Framework
             FilteredStaffs.ReportByStaffName("yyy yyy");
             if (FilteredStaffs.Count == 2)
             {
-                if (FilteredStaffs.StaffList[0].StaffID != 12)
+                if (FilteredStaffs.StaffList[0].StaffID != 13)
                 {
                     OK = false;
                 }
-                if(FilteredStaffs.StaffList[1].StaffID != 13)
+                if(FilteredStaffs.StaffList[1].StaffID != 15)
                 {
                     OK = false;
                 }
