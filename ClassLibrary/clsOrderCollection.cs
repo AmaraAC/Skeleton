@@ -90,5 +90,39 @@ namespace ClassLibrary
             DB.Execute("sproc_tblOrder_Update");
 
         }
+
+        public void Delete()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("OrderId", mThisOrder.OrderID);
+            DB.Execute("sproc_tblOrder_Delete");
+        }
+
+        public void ReportByCustomerName(String Name)
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("CustomerName", Name);
+            DB.Execute("sproc_tblOrder_FilterByCustomerName");
+            PopulateArray(DB);
+        }
+        void PopulateArray(clsDataConnection DB)
+        {
+            Int32 Index = 0;
+            Int32 RecordCount;
+            RecordCount = DB.Count;
+            mOrderList = new List<clsOrder>();
+            while(Index < RecordCount)
+            {
+                clsOrder AnOrder = new clsOrder();
+                AnOrder.Dispatched = Convert.ToBoolean(DB.DataTable.Rows[Index]["Dispatched"]);
+                AnOrder.DateAdded = Convert.ToDateTime(DB.DataTable.Rows[Index]["DateAdded"]);
+                AnOrder.OrderAddress = Convert.ToString(DB.DataTable.Rows[Index]["OrderAddress"]);
+                AnOrder.FinalPrice = Convert.ToInt32(DB.DataTable.Rows[Index]["FinalPrice"]);
+                AnOrder.CustomerName = Convert.ToString(DB.DataTable.Rows[Index]["CustomerName"]);
+                AnOrder.OrderID = Convert.ToInt32(DB.DataTable.Rows[Index]["OrderID"]);
+                mOrderList.Add(AnOrder);
+                Index++;
+            }
+        }
     }
 }

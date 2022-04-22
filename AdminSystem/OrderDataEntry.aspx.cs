@@ -54,8 +54,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AnOrder.DateAdded = Convert.ToDateTime(DateAdded);
             AnOrder.Dispatched = chkDispatched.Checked;
             clsOrderCollection OrderList = new clsOrderCollection();
-            OrderList.ThisOrder = AnOrder;
-            OrderList.Add();
+   
             Response.Redirect("OrderList.aspx");
             if (OrderID == -1)
             {

@@ -102,6 +102,58 @@ namespace Testing4
             AllOrders.ThisOrder.Find(PrimaryKey);
             Assert.AreEqual(AllOrders.ThisOrder, TestItem);
         }
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            clsOrder TestItem = new clsOrder();
+            Int32 PrimaryKey = 0;
+            TestItem.Dispatched = true;
+            TestItem.DateAdded = DateTime.Now.Date;
+            TestItem.OrderAddress = "Random Street";
+            TestItem.FinalPrice = 17.38;
+            TestItem.CustomerName = "Howdy Partner";
+            AllOrders.ThisOrder = TestItem;
+            PrimaryKey = AllOrders.Add();
+            TestItem.OrderID = PrimaryKey;
+            AllOrders.ThisOrder.Find(PrimaryKey);
+            AllOrders.Delete();
+            Boolean Found = AllOrders.ThisOrder.Find(PrimaryKey);
+            Assert.IsFalse(Found);
+
+        }
+        [TestMethod]
+        public void ReportByCustomerNameMethodOk()
+        {
+            clsOrderCollection AllOrder = new clsOrderCollection();
+            clsOrderCollection FilteredOrder = new clsOrderCollection();
+            FilteredOrder.ReportByCustomerName("Bando D");
+            Assert.AreEqual(0, FilteredOrder.Count);
+            
+        }
+        [TestMethod]
+        public void ReportByCustomerNameTestDataFound()
+        {
+            clsOrderCollection FilteredOrder = new clsOrderCollection();
+            Boolean OK = true;
+            FilteredOrder.ReportByCustomerName("Bando D");
+            if(FilteredOrder.Count == 2)
+            {
+                if(FilteredOrder.OrderList[0].OrderID != 4)
+                {
+                    OK = false;
+                }
+                if(FilteredOrder.OrderList[1].OrderID != 6)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
         
 
 
