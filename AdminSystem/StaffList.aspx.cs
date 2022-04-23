@@ -42,7 +42,7 @@ public partial class _1_List : System.Web.UI.Page
         }
         else
         {
-            lblError.Text = "Please select a record to edit from the list";
+            lblError.Text = "Please select a record to edit from the list"; 
 
         }
     }
@@ -50,7 +50,7 @@ public partial class _1_List : System.Web.UI.Page
     protected void btnDelete_Click(object sender, EventArgs e)
     {
         Int32 StaffID;
-        if (lstStaffList.SelectedIndex != 1)
+        if (lstStaffList.SelectedIndex != -1)
         {
             StaffID = Convert.ToInt32(lstStaffList.SelectedValue);
             Session["StaffID"] = StaffID;
