@@ -127,8 +127,8 @@ namespace Testing4
         {
             clsOrderCollection AllOrder = new clsOrderCollection();
             clsOrderCollection FilteredOrder = new clsOrderCollection();
-            FilteredOrder.ReportByCustomerName("Bando D");
-            Assert.AreEqual(0, FilteredOrder.Count);
+            FilteredOrder.ReportByCustomerName("");
+            Assert.AreEqual(AllOrder.Count, FilteredOrder.Count);
             
         }
         [TestMethod]
